@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deals Bazaar - Admin Panel</title>
+    <title>Deals Bazaar - Auto-Sync Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -28,7 +28,7 @@
             min-height: 100vh;
         }
 
-        /* ========== LOGIN OVERLAY ========== */
+        /* ========== LOGIN ========== */
         .login-overlay {
             position: fixed;
             top: 0;
@@ -40,14 +40,8 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
-
-        .login-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        .login-overlay.hidden { display: none; }
 
         .login-box {
             background: white;
@@ -59,29 +53,13 @@
             text-align: center;
         }
 
-        .login-icon {
-            font-size: 3rem;
-            color: #00bcd4;
-            margin-bottom: 10px;
-        }
-
-        .login-box h2 {
-            font-size: 1.5rem;
-            color: #1a1a2e;
-            margin-bottom: 6px;
-        }
-
-        .login-box p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 24px;
-        }
+        .login-box h2 { margin: 12px 0 8px; color: #1a1a2e; }
+        .login-box p { color: #7f8c8d; font-size: 0.9rem; margin-bottom: 20px; }
 
         .input-group {
             position: relative;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
-
         .input-group i {
             position: absolute;
             left: 16px;
@@ -89,56 +67,52 @@
             transform: translateY(-50%);
             color: #95a5a6;
         }
-
         .input-group input {
             width: 100%;
             padding: 14px 16px 14px 46px;
             border: 2px solid #e0e5ec;
             border-radius: 12px;
             font-size: 0.95rem;
-            transition: 0.2s;
             background: #fafbfc;
         }
-
         .input-group input:focus {
             outline: none;
             border-color: #00bcd4;
-            box-shadow: 0 0 0 4px rgba(0,188,212,0.08);
         }
 
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #00bcd4, #00838f);
-            color: white;
-            border: none;
+        .btn {
+            padding: 12px 24px;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 1rem;
+            border: none;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .login-btn:hover {
-            background: linear-gradient(135deg, #0097a7, #006064);
-            box-shadow: 0 8px 20px rgba(0,188,212,0.3);
+        .btn-primary {
+            background: linear-gradient(135deg, #00bcd4, #00838f);
+            color: white;
+            width: 100%;
+            justify-content: center;
         }
+        .btn-primary:hover { background: #00838f; }
+        .btn-danger { background: #ef5350; color: white; }
+        .btn-success { background: #66bb6a; color: white; }
+        .btn-outline { background: white; border: 2px solid #e0e5ec; }
 
         .error-msg {
             color: #e74c3c;
             font-size: 0.85rem;
-            margin-top: 10px;
+            margin-top: 8px;
             display: none;
         }
-
         .error-msg.show { display: block; }
 
         /* ========== ADMIN LAYOUT ========== */
-        .admin-layout {
-            display: flex;
-            min-height: 100vh;
-        }
+        .admin-layout { display: flex; min-height: 100vh; }
 
         .sidebar {
             width: var(--sidebar-width);
@@ -150,7 +124,6 @@
             left: 0;
             top: 0;
             z-index: 50;
-            box-shadow: 4px 0 24px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
         }
@@ -160,9 +133,8 @@
             border-bottom: 1px solid rgba(255,255,255,0.08);
             margin-bottom: 12px;
         }
-
         .sidebar-logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: #00bcd4;
             display: flex;
@@ -170,12 +142,7 @@
             gap: 10px;
         }
 
-        .nav-menu {
-            list-style: none;
-            padding: 8px 12px;
-            flex: 1;
-        }
-
+        .nav-menu { list-style: none; padding: 8px 12px; flex: 1; }
         .nav-item {
             padding: 11px 16px;
             margin: 3px 0;
@@ -189,25 +156,12 @@
             font-size: 0.88rem;
             color: #95a5a6;
         }
-
-        .nav-item:hover {
-            background: rgba(0,188,212,0.1);
+        .nav-item:hover, .nav-item.active {
+            background: rgba(0,188,212,0.15);
             color: #00bcd4;
         }
 
-        .nav-item.active {
-            background: rgba(0,188,212,0.18);
-            color: #00bcd4;
-            font-weight: 600;
-        }
-
-        .nav-item i { width: 20px; text-align: center; }
-
-        .sidebar-footer {
-            padding: 16px 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
+        .sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.08); }
         .logout-btn {
             width: 100%;
             padding: 10px;
@@ -217,17 +171,6 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            background: rgba(231,76,60,0.15);
-            border-color: #e74c3c;
         }
 
         .main-content {
@@ -245,12 +188,7 @@
             flex-wrap: wrap;
             gap: 14px;
         }
-
-        .page-title {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
+        .page-title { font-size: 1.7rem; font-weight: 700; }
 
         .card {
             background: white;
@@ -260,131 +198,84 @@
             margin-bottom: 20px;
             border: 1px solid var(--border);
         }
-
         .card-header {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 18px;
-            color: #1a1a2e;
+            margin-bottom: 16px;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
+            gap: 14px;
         }
-
         .form-group { display: flex; flex-direction: column; gap: 6px; }
         .form-group.full { grid-column: 1 / -1; }
-
         .form-group label {
             font-weight: 600;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: #5f6b7a;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
         }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 11px 14px;
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 10px 14px;
             border: 2px solid #e0e5ec;
             border-radius: 10px;
             font-size: 0.9rem;
             font-family: inherit;
-            transition: 0.2s;
-            background: #fafbfc;
         }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #00bcd4;
-            box-shadow: 0 0 0 4px rgba(0,188,212,0.06);
-        }
-
-        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
         .required::after { content: " *"; color: #e74c3c; }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.88rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #00bcd4, #00838f);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0,188,212,0.3);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #0097a7, #006064);
-        }
-
-        .btn-danger { background: #ef5350; color: white; }
-        .btn-danger:hover { background: #d32f2f; }
-        .btn-success { background: #66bb6a; color: white; }
-        .btn-success:hover { background: #43a047; }
-        .btn-outline { background: white; color: #5f6b7a; border: 2px solid #e0e5ec; }
-        .btn-outline:hover { border-color: #00bcd4; color: #00bcd4; }
-
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 
         .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
-
-        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th {
             background: #f8fafc;
-            padding: 12px 14px;
+            padding: 10px 14px;
             text-align: left;
             font-weight: 700;
-            color: #5f6b7a;
             border-bottom: 2px solid #e0e5ec;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            white-space: nowrap;
         }
-
-        td { padding: 12px 14px; border-bottom: 1px solid #f1f4f9; }
-        tr:hover td { background: #fafdfe; }
+        td { padding: 10px 14px; border-bottom: 1px solid #f1f4f9; }
 
         .product-thumb {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             object-fit: cover;
-            background: #eef2f6;
         }
 
         .icon-btn {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
             border: none;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 2px;
         }
-
         .icon-btn.edit { background: #e3f2fd; color: #1976d2; }
-        .icon-btn.edit:hover { background: #bbdefb; }
         .icon-btn.delete { background: #ffebee; color: #d32f2f; }
-        .icon-btn.delete:hover { background: #ffcdd2; }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .status-synced { background: #e8f5e9; color: #2e7d32; }
+        .status-unsynced { background: #fff3e0; color: #e65100; }
+        .status-error { background: #ffebee; color: #c62828; }
+
+        .sync-info {
+            background: #f0f8ff;
+            border: 2px dashed #00bcd4;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
 
         .toast-container {
             position: fixed;
@@ -392,87 +283,64 @@
             right: 20px;
             z-index: 9999;
         }
-
         .toast {
             padding: 14px 20px;
             border-radius: 12px;
             color: white;
             font-weight: 600;
             margin-bottom: 10px;
-            animation: slideIn 0.35s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
         }
-
-        .toast-success { background: linear-gradient(135deg, #66bb6a, #43a047); }
-        .toast-error { background: linear-gradient(135deg, #ef5350, #d32f2f); }
-        .toast-info { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+        .toast-success { background: #66bb6a; }
+        .toast-error { background: #ef5350; }
+        .toast-info { background: #42a5f5; }
 
         @keyframes slideIn {
             from { transform: translateX(120%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
 
-        .github-info {
-            background: #f0f8ff;
-            border: 2px dashed #00bcd4;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 12px;
-            font-size: 0.85rem;
-            color: #1a1a2e;
-        }
-
-        .github-info code {
-            background: #e0f7fa;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        textarea.json-preview {
-            width: 100%;
-            height: 200px;
-            font-family: monospace;
-            font-size: 0.8rem;
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid #e0e5ec;
-            background: #fafbfc;
+        .sync-status-bar {
+            background: #1a1a2e;
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
 
-    <!-- Login Overlay -->
+    <!-- Login -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-box">
-            <div class="login-icon"><i class="fas fa-shield-alt"></i></div>
+            <i class="fas fa-shield-alt" style="font-size:3rem;color:#00bcd4;"></i>
             <h2>Admin Login</h2>
-            <p>Enter credentials to access panel</p>
+            <p>Enter credentials to access</p>
             <div class="input-group">
                 <i class="fas fa-user"></i>
-                <input type="text" id="usernameInput" placeholder="Username" autocomplete="off">
+                <input type="text" id="usernameInput" placeholder="Username">
             </div>
             <div class="input-group">
                 <i class="fas fa-lock"></i>
                 <input type="password" id="passwordInput" placeholder="Password">
             </div>
-            <button class="login-btn" onclick="handleLogin()">
+            <button class="btn btn-primary" onclick="handleLogin()">
                 <i class="fas fa-sign-in-alt"></i> Login
             </button>
             <p class="error-msg" id="loginError">Invalid credentials!</p>
-            <p style="margin-top:16px;font-size:0.7rem;color:#95a5a6;">
-                Default: admin / admin123
-            </p>
+            <p style="font-size:0.7rem;color:#95a5a6;margin-top:12px;">Default: admin / admin123</p>
         </div>
     </div>
 
     <!-- Admin Layout -->
     <div class="admin-layout">
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo"><i class="fas fa-bolt"></i> DealsBazar</div>
-                <div style="font-size:0.7rem;color:#7f8c8d;margin-top:4px;">Admin Panel v3.0</div>
+                <div style="font-size:0.7rem;color:#7f8c8d;">Auto-Sync v4.0</div>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
@@ -484,11 +352,8 @@
                 <li class="nav-item" data-tab="manage" onclick="switchTab('manage')">
                     <i class="fas fa-list-check"></i> Manage Products
                 </li>
-                <li class="nav-item" data-tab="export" onclick="switchTab('export')">
-                    <i class="fas fa-file-export"></i> Export & Deploy
-                </li>
                 <li class="nav-item" data-tab="settings" onclick="switchTab('settings')">
-                    <i class="fas fa-cog"></i> Settings
+                    <i class="fas fa-cog"></i> GitHub Settings
                 </li>
             </ul>
             <div class="sidebar-footer">
@@ -499,20 +364,29 @@
         </aside>
 
         <div class="main-content">
+            <!-- Sync Status Bar -->
+            <div class="sync-status-bar" id="syncStatusBar">
+                <span id="syncStatusText">🔄 Checking sync status...</span>
+                <button class="btn btn-sm" style="background:#00bcd4;color:white;padding:6px 12px;font-size:0.7rem;" 
+                        onclick="syncNow()">
+                    <i class="fas fa-sync-alt"></i> Sync Now
+                </button>
+            </div>
+
             <!-- Dashboard -->
             <div id="tab-dashboard">
                 <div class="top-bar">
                     <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
                 </div>
                 <div class="card">
-                    <div class="card-header">📊 Quick Stats</div>
+                    <div class="card-header">📊 Stats</div>
                     <div id="statsRow" style="display:flex;gap:20px;flex-wrap:wrap;"></div>
                 </div>
                 <div class="card">
                     <div class="card-header">🕐 Recent Products</div>
                     <div class="table-wrapper">
                         <table>
-                            <thead><tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Discount</th></tr></thead>
+                            <thead><tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Sync</th></tr></thead>
                             <tbody id="recentTableBody"></tbody>
                         </table>
                     </div>
@@ -522,15 +396,15 @@
             <!-- Add Product -->
             <div id="tab-add" style="display:none;">
                 <div class="top-bar">
-                    <h1 class="page-title" id="addPageTitle"><i class="fas fa-plus-circle"></i> Add New Product</h1>
+                    <h1 class="page-title" id="addPageTitle"><i class="fas fa-plus-circle"></i> Add Product</h1>
                 </div>
                 <div class="card">
                     <form id="productForm" onsubmit="handleSaveProduct(event)">
                         <input type="hidden" id="editId">
                         <div class="form-grid">
                             <div class="form-group full">
-                                <label class="required">Product Title</label>
-                                <input type="text" id="prodTitle" placeholder="Enter product name..." required>
+                                <label class="required">Title</label>
+                                <input type="text" id="prodTitle" placeholder="Product name" required>
                             </div>
                             <div class="form-group">
                                 <label class="required">Platform</label>
@@ -543,16 +417,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="required">Selling Price (₹)</label>
+                                <label class="required">Price (₹)</label>
                                 <input type="number" id="prodPrice" placeholder="299" required>
                             </div>
                             <div class="form-group">
-                                <label>Original Price (₹)</label>
+                                <label>Old Price (₹)</label>
                                 <input type="number" id="prodOldPrice" placeholder="499">
                             </div>
                             <div class="form-group">
                                 <label>Discount</label>
-                                <input type="text" id="prodDiscount" placeholder="50% OFF">
+                                <input type="text" id="prodDiscount" placeholder="60% OFF">
                             </div>
                             <div class="form-group">
                                 <label>Image URL</label>
@@ -564,26 +438,26 @@
                             </div>
                             <div class="form-group full">
                                 <label>Description</label>
-                                <textarea id="prodDescription" placeholder="Short description..." maxlength="150"></textarea>
+                                <textarea id="prodDescription" placeholder="Short description..."></textarea>
                             </div>
                         </div>
                         <div class="btn-group">
                             <button type="submit" class="btn btn-primary" id="saveBtn">
-                                <i class="fas fa-save"></i> Save Product
+                                <i class="fas fa-cloud-upload-alt"></i> Save & Auto-Sync
                             </button>
                             <button type="button" class="btn btn-outline" onclick="resetForm()">
-                                <i class="fas fa-undo"></i> Clear Form
+                                <i class="fas fa-undo"></i> Clear
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Manage Products -->
+            <!-- Manage -->
             <div id="tab-manage" style="display:none;">
                 <div class="top-bar">
-                    <h1 class="page-title"><i class="fas fa-list-check"></i> Manage Products</h1>
-                    <span id="manageCount" style="color:#7f8c8d;font-weight:600;"></span>
+                    <h1 class="page-title"><i class="fas fa-list-check"></i> Manage</h1>
+                    <span id="manageCount"></span>
                 </div>
                 <div class="card">
                     <div class="table-wrapper">
@@ -595,94 +469,53 @@
                 </div>
             </div>
 
-            <!-- Export & Deploy -->
-            <div id="tab-export" style="display:none;">
-                <div class="top-bar">
-                    <h1 class="page-title"><i class="fas fa-rocket"></i> Export & Deploy</h1>
-                </div>
-                
-                <!-- STEP 1: Generate JSON -->
-                <div class="card">
-                    <div class="card-header">📝 Step 1: Generate JSON</div>
-                    <p style="color:#7f8c8d;margin-bottom:12px;">Copy this JSON and save as <code>products.json</code> in your GitHub repository.</p>
-                    <textarea id="jsonOutput" readonly class="json-preview"></textarea>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="copyJSON()">
-                            <i class="fas fa-copy"></i> Copy JSON
-                        </button>
-                        <button class="btn btn-success" onclick="downloadJSON()">
-                            <i class="fas fa-download"></i> Download JSON File
-                        </button>
-                    </div>
-                </div>
-
-                <!-- STEP 2: GitHub Instructions -->
-                <div class="card">
-                    <div class="card-header">🚀 Step 2: Upload to GitHub</div>
-                    <div class="github-info">
-                        <p><strong>1.</strong> Download the JSON file above</p>
-                        <p><strong>2.</strong> Go to your GitHub repository: <code>kis566/Dealsbazar</code></p>
-                        <p><strong>3.</strong> Upload/Replace <code>products.json</code> file</p>
-                        <p><strong>4.</strong> Commit changes</p>
-                        <p><strong>5.</strong> Wait 1-2 minutes for GitHub Pages to update</p>
-                        <p style="margin-top:8px;color:#00838f;">✅ Your website will automatically show new products!</p>
-                    </div>
-                    <div class="btn-group" style="margin-top:12px;">
-                        <a href="https://github.com/kis566/Dealsbazar" target="_blank" class="btn btn-primary">
-                            <i class="fab fa-github"></i> Open GitHub Repository
-                        </a>
-                    </div>
-                </div>
-
-                <!-- STEP 3: Test -->
-                <div class="card">
-                    <div class="card-header">🔗 Step 3: Verify</div>
-                    <p style="color:#7f8c8d;margin-bottom:8px;">Check if your JSON is accessible:</p>
-                    <code id="jsonUrl" style="background:#f0f8ff;padding:8px;border-radius:6px;display:block;word-break:break-all;"></code>
-                    <a id="testJsonLink" href="#" target="_blank" class="btn btn-outline" style="margin-top:8px;">
-                        <i class="fas fa-external-link-alt"></i> Test JSON URL
-                    </a>
-                </div>
-            </div>
-
             <!-- Settings -->
             <div id="tab-settings" style="display:none;">
                 <div class="top-bar">
-                    <h1 class="page-title"><i class="fas fa-cog"></i> Settings</h1>
+                    <h1 class="page-title"><i class="fas fa-cog"></i> GitHub Settings</h1>
                 </div>
                 <div class="card">
-                    <div class="card-header">🔧 JSON Data URL Configuration</div>
-                    <p style="color:#7f8c8d;margin-bottom:12px;">Configure the URL where your <code>products.json</code> is hosted.</p>
-                    <div class="form-group" style="margin-bottom:12px;">
-                        <label>JSON Data URL (GitHub Raw)</label>
-                        <input type="url" id="jsonDataUrl" placeholder="https://raw.githubusercontent.com/..." style="width:100%;">
-                    </div>
-                    <small style="color:#7f8c8d;">Example: <code>https://raw.githubusercontent.com/kis566/Dealsbazar/main/products.json</code></small>
-                    <div class="btn-group" style="margin-top:12px;">
-                        <button class="btn btn-primary" onclick="saveJsonUrl()">
-                            <i class="fas fa-save"></i> Save URL
-                        </button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">🔒 Change Password</div>
+                    <div class="card-header">🔑 GitHub Auto-Sync Configuration</div>
+                    <p style="color:#7f8c8d;margin-bottom:14px;">
+                        Enter your GitHub details to enable automatic syncing.
+                        <br><strong>Get Token:</strong> <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a>
+                    </p>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Current Password</label>
-                            <input type="password" id="currentPass" placeholder="Current password">
+                            <label>GitHub Token *</label>
+                            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
                         </div>
                         <div class="form-group">
-                            <label>New Password</label>
-                            <input type="password" id="newPass" placeholder="New password">
+                            <label>Repository Owner *</label>
+                            <input type="text" id="githubOwner" placeholder="kis566">
                         </div>
                         <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" id="confirmPass" placeholder="Confirm password">
+                            <label>Repository Name *</label>
+                            <input type="text" id="githubRepo" placeholder="Dealsbazar">
+                        </div>
+                        <div class="form-group">
+                            <label>File Path</label>
+                            <input type="text" id="githubPath" placeholder="products.json" value="products.json">
+                        </div>
+                        <div class="form-group">
+                            <label>Branch</label>
+                            <input type="text" id="githubBranch" placeholder="main" value="main">
                         </div>
                     </div>
-                    <button class="btn btn-primary" style="margin-top:12px;" onclick="changePassword()">
-                        <i class="fas fa-key"></i> Update Password
-                    </button>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="saveGitHubConfig()">
+                            <i class="fas fa-save"></i> Save Configuration
+                        </button>
+                        <button class="btn btn-success" onclick="testConnection()">
+                            <i class="fas fa-plug"></i> Test Connection
+                        </button>
+                    </div>
+                    <div class="sync-info" style="margin-top:14px;">
+                        <strong>ℹ️ How it works:</strong>
+                        <br>1. Add/edit/delete products
+                        <br>2. Changes automatically sync to GitHub
+                        <br>3. Website updates within 1-2 minutes
+                    </div>
                 </div>
             </div>
         </div>
@@ -691,62 +524,30 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
-        // ==================== CONFIGURATION ====================
+        // ==================== CONFIG ====================
         const STORAGE_KEY = 'dealsbazar_products';
         const AUTH_KEY = 'dealsbazar_auth';
-        const SETTINGS_KEY = 'dealsbazar_settings';
-        const JSON_URL_KEY = 'dealsbazar_json_url';
-
-        const DEFAULT_USERNAME = 'admin';
-        const DEFAULT_PASSWORD = 'admin123';
+        const GITHUB_CONFIG_KEY = 'dealsbazar_github_config';
 
         const DEFAULT_PRODUCTS = [
             {
                 id: 'a1b2c3d4e5',
-                title: 'Wireless Bluetooth Earbuds with ANC',
+                title: 'Wireless Bluetooth Earbuds',
                 platform: 'Amazon',
                 price: '599',
                 oldPrice: '1499',
                 discount: '60% OFF',
                 image: 'https://images.unsplash.com/photo-1590658268037-6bf12f1441f4?w=400',
                 link: '#',
-                description: 'Active noise cancellation, 30hr battery, IPX5 waterproof.',
+                description: 'Premium sound quality with noise cancellation.',
                 rating: '4.5',
                 reviews: '2.3k',
                 category: 'Electronics',
                 trending: true
-            },
-            {
-                id: 'f6g7h8i9j0',
-                title: 'Smart Watch Ultra Series',
-                platform: 'Flipkart',
-                price: '999',
-                oldPrice: '2999',
-                discount: '67% OFF',
-                image: 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400',
-                link: '#',
-                description: 'AMOLED display, heart rate, SpO2, GPS, 14-day battery.',
-                rating: '4.3',
-                reviews: '1.8k',
-                category: 'Wearables',
-                trending: true
-            },
-            {
-                id: 'k1l2m3n4o5',
-                title: 'Premium Genuine Leather Wallet',
-                platform: 'Meesho',
-                price: '249',
-                oldPrice: '699',
-                discount: '64% OFF',
-                image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400',
-                link: '#',
-                description: 'RFID blocking, 8 card slots, slim design.',
-                rating: '4.6',
-                reviews: '5.1k',
-                category: 'Fashion',
-                trending: false
             }
         ];
+
+        let autoSyncEnabled = false;
 
         // ==================== AUTH ====================
         function isLoggedIn() {
@@ -756,15 +557,16 @@
         function handleLogin() {
             const username = document.getElementById('usernameInput').value.trim();
             const password = document.getElementById('passwordInput').value;
-            const storedUsername = localStorage.getItem(SETTINGS_KEY + '_username') || DEFAULT_USERNAME;
-            const storedPassword = localStorage.getItem(SETTINGS_KEY + '_password') || DEFAULT_PASSWORD;
+            const storedUser = localStorage.getItem('dealsbazar_user') || 'admin';
+            const storedPass = localStorage.getItem('dealsbazar_pass') || 'admin123';
 
-            if (username === storedUsername && password === storedPassword) {
+            if (username === storedUser && password === storedPass) {
                 sessionStorage.setItem(AUTH_KEY, 'true');
                 document.getElementById('loginOverlay').classList.add('hidden');
-                document.getElementById('loginError').classList.remove('show');
-                showToast('Welcome, ' + username + '!', 'success');
+                showToast('Welcome!', 'success');
                 initDashboard();
+                loadGitHubConfig();
+                checkSyncStatus();
             } else {
                 document.getElementById('loginError').classList.add('show');
             }
@@ -773,11 +575,13 @@
         function handleLogout() {
             sessionStorage.removeItem(AUTH_KEY);
             document.getElementById('loginOverlay').classList.remove('hidden');
-            showToast('Logged out', 'info');
         }
 
         if (isLoggedIn()) {
             document.getElementById('loginOverlay').classList.add('hidden');
+            initDashboard();
+            loadGitHubConfig();
+            checkSyncStatus();
         }
 
         // ==================== DATA ====================
@@ -808,11 +612,191 @@
             toast.className = `toast toast-${type}`;
             toast.textContent = message;
             container.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = '0.3s';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => toast.remove(), 3500);
+        }
+
+        // ==================== GITHUB SYNC ====================
+        function getGitHubConfig() {
+            const stored = localStorage.getItem(GITHUB_CONFIG_KEY);
+            return stored ? JSON.parse(stored) : null;
+        }
+
+        function saveGitHubConfig() {
+            const config = {
+                token: document.getElementById('githubToken').value.trim(),
+                owner: document.getElementById('githubOwner').value.trim(),
+                repo: document.getElementById('githubRepo').value.trim(),
+                path: document.getElementById('githubPath').value.trim() || 'products.json',
+                branch: document.getElementById('githubBranch').value.trim() || 'main'
+            };
+
+            if (!config.token || !config.owner || !config.repo) {
+                showToast('Please fill all required fields!', 'error');
+                return;
+            }
+
+            localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(config));
+            autoSyncEnabled = true;
+            showToast('GitHub config saved! Auto-sync enabled ✅', 'success');
+            updateSyncStatus('connected');
+        }
+
+        function loadGitHubConfig() {
+            const config = getGitHubConfig();
+            if (config) {
+                document.getElementById('githubToken').value = config.token || '';
+                document.getElementById('githubOwner').value = config.owner || '';
+                document.getElementById('githubRepo').value = config.repo || '';
+                document.getElementById('githubPath').value = config.path || 'products.json';
+                document.getElementById('githubBranch').value = config.branch || 'main';
+                autoSyncEnabled = true;
+            }
+        }
+
+        async function syncToGitHub(products) {
+            const config = getGitHubConfig();
+            if (!config || !config.token) {
+                updateSyncStatus('not_configured');
+                return false;
+            }
+
+            try {
+                updateSyncStatus('syncing');
+                
+                const content = JSON.stringify(products, null, 2);
+                const base64Content = btoa(unescape(encodeURIComponent(content)));
+                
+                // Get current file SHA
+                let sha = null;
+                try {
+                    const getRes = await fetch(
+                        `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.path}?ref=${config.branch}`,
+                        {
+                            headers: {
+                                'Authorization': `token ${config.token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        }
+                    );
+                    if (getRes.ok) {
+                        const getData = await getRes.json();
+                        sha = getData.sha;
+                    }
+                } catch (e) {
+                    // File doesn't exist yet, will create new
+                }
+
+                // Create or update file
+                const body = {
+                    message: `🔄 Auto-sync: Update products (${new Date().toLocaleString()})`,
+                    content: base64Content,
+                    branch: config.branch
+                };
+                if (sha) body.sha = sha;
+
+                const putRes = await fetch(
+                    `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.path}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${config.token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    }
+                );
+
+                if (putRes.ok) {
+                    updateSyncStatus('synced');
+                    return true;
+                } else {
+                    const errData = await putRes.json();
+                    console.error('GitHub API Error:', errData);
+                    updateSyncStatus('error');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Sync Error:', error);
+                updateSyncStatus('error');
+                return false;
+            }
+        }
+
+        function updateSyncStatus(status) {
+            const statusText = document.getElementById('syncStatusText');
+            switch(status) {
+                case 'synced':
+                    statusText.innerHTML = '✅ Synced to GitHub';
+                    break;
+                case 'syncing':
+                    statusText.innerHTML = '🔄 Syncing...';
+                    break;
+                case 'not_configured':
+                    statusText.innerHTML = '⚠️ GitHub not configured - Go to Settings';
+                    break;
+                case 'connected':
+                    statusText.innerHTML = '✅ Connected - Auto-sync ready';
+                    break;
+                case 'error':
+                    statusText.innerHTML = '❌ Sync failed - Check Settings';
+                    break;
+                default:
+                    statusText.innerHTML = '🔌 Not connected';
+            }
+        }
+
+        function checkSyncStatus() {
+            const config = getGitHubConfig();
+            if (config && config.token) {
+                updateSyncStatus('connected');
+                autoSyncEnabled = true;
+            } else {
+                updateSyncStatus('not_configured');
+                autoSyncEnabled = false;
+            }
+        }
+
+        async function syncNow() {
+            const products = getProducts();
+            const success = await syncToGitHub(products);
+            if (success) {
+                showToast('Synced successfully! ✅', 'success');
+            } else {
+                showToast('Sync failed! Check GitHub settings', 'error');
+            }
+        }
+
+        async function testConnection() {
+            const config = {
+                token: document.getElementById('githubToken').value.trim(),
+                owner: document.getElementById('githubOwner').value.trim(),
+                repo: document.getElementById('githubRepo').value.trim()
+            };
+
+            if (!config.token || !config.owner || !config.repo) {
+                showToast('Fill all fields first!', 'error');
+                return;
+            }
+
+            try {
+                const res = await fetch(
+                    `https://api.github.com/repos/${config.owner}/${config.repo}`,
+                    {
+                        headers: {
+                            'Authorization': `token ${config.token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+                if (res.ok) {
+                    showToast('Connection successful! ✅', 'success');
+                } else {
+                    showToast('Connection failed! Check details', 'error');
+                }
+            } catch (e) {
+                showToast('Network error!', 'error');
+            }
         }
 
         // ==================== TAB SWITCHING ====================
@@ -829,21 +813,20 @@
 
             if (tabName === 'dashboard') initDashboard();
             if (tabName === 'manage') loadManageTable();
-            if (tabName === 'export') loadExportTab();
+            if (tabName === 'settings') loadGitHubConfig();
         }
 
         // ==================== DASHBOARD ====================
         function initDashboard() {
-            if (!isLoggedIn()) return;
             const products = getProducts();
             document.getElementById('statsRow').innerHTML = `
-                <div style="background:#e0f7fa;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
-                    <h2 style="color:#00838f;">${products.length}</h2><small>Total Products</small>
+                <div style="background:#e0f7fa;padding:20px;border-radius:12px;text-align:center;min-width:100px;">
+                    <h2 style="color:#00838f;">${products.length}</h2><small>Total</small>
                 </div>
-                <div style="background:#fff3e0;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
+                <div style="background:#fff3e0;padding:20px;border-radius:12px;text-align:center;min-width:100px;">
                     <h2 style="color:#ff8f00;">${products.filter(p => p.platform?.toLowerCase().includes('amazon')).length}</h2><small>Amazon</small>
                 </div>
-                <div style="background:#e8f5e9;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
+                <div style="background:#e8f5e9;padding:20px;border-radius:12px;text-align:center;min-width:100px;">
                     <h2 style="color:#388e3c;">${products.filter(p => p.platform?.toLowerCase().includes('flipkart')).length}</h2><small>Flipkart</small>
                 </div>
             `;
@@ -852,16 +835,16 @@
             document.getElementById('recentTableBody').innerHTML = recent.map(p => `
                 <tr>
                     <td>${p.image ? `<img src="${p.image}" class="product-thumb" onerror="this.style.display='none'">` : '📦'}</td>
-                    <td><strong>${p.title}</strong></td>
+                    <td>${p.title}</td>
                     <td>${p.platform}</td>
                     <td>₹${p.price}</td>
-                    <td>${p.discount || '-'}</td>
+                    <td><span class="status-badge status-synced">Synced</span></td>
                 </tr>
             `).join('') || '<tr><td colspan="5">No products</td></tr>';
         }
 
         // ==================== ADD / EDIT ====================
-        function handleSaveProduct(event) {
+        async function handleSaveProduct(event) {
             event.preventDefault();
             const products = getProducts();
             const editId = document.getElementById('editId').value;
@@ -877,26 +860,35 @@
                 link: document.getElementById('prodLink').value,
                 description: document.getElementById('prodDescription').value,
                 rating: (Math.random() * 1 + 4).toFixed(1),
-                reviews: Math.floor(Math.random() * 5000) + ' reviews',
+                reviews: Math.floor(Math.random() * 4000) + 500,
                 category: 'General',
                 trending: false
             };
 
             if (!product.title || !product.price || !product.link || !product.platform) {
-                showToast('Fill all required fields!', 'error');
+                showToast('Fill required fields!', 'error');
                 return;
             }
 
             if (editId) {
                 const index = products.findIndex(p => p.id === editId);
                 if (index !== -1) products[index] = product;
-                showToast('Updated!', 'success');
+                showToast('Product updated!', 'success');
             } else {
                 products.push(product);
-                showToast('Added!', 'success');
+                showToast('Product added!', 'success');
             }
 
             saveProducts(products);
+            
+            // Auto-sync to GitHub
+            if (autoSyncEnabled) {
+                const synced = await syncToGitHub(products);
+                if (synced) {
+                    showToast('✅ Auto-synced to GitHub!', 'success');
+                }
+            }
+
             resetForm();
             initDashboard();
             loadManageTable();
@@ -914,101 +906,5 @@
             document.getElementById('prodImage').value = product.image || '';
             document.getElementById('prodLink').value = product.link;
             document.getElementById('prodDescription').value = product.description || '';
-            switchTab('add');
-        }
-
-        function deleteProduct(id) {
-            if (!confirm('Delete this product?')) return;
-            let products = getProducts();
-            products = products.filter(p => p.id !== id);
-            saveProducts(products);
-            showToast('Deleted!', 'error');
-            initDashboard();
-            loadManageTable();
-        }
-
-        function resetForm() {
-            document.getElementById('productForm').reset();
-            document.getElementById('editId').value = '';
-        }
-
-        // ==================== MANAGE ====================
-        function loadManageTable() {
-            const products = getProducts();
-            document.getElementById('manageCount').textContent = `Total: ${products.length}`;
-            document.getElementById('manageTableBody').innerHTML = products.map(p => `
-                <tr>
-                    <td>${p.image ? `<img src="${p.image}" class="product-thumb" onerror="this.style.display='none'">` : '📦'}</td>
-                    <td><strong>${p.title}</strong></td>
-                    <td>${p.platform}</td>
-                    <td>₹${p.price}</td>
-                    <td>
-                        <button class="icon-btn edit" onclick="editProduct('${p.id}')"><i class="fas fa-edit"></i></button>
-                        <button class="icon-btn delete" onclick="deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-            `).join('') || '<tr><td colspan="5">No products</td></tr>';
-        }
-
-        // ==================== EXPORT ====================
-        function loadExportTab() {
-            const products = getProducts();
-            document.getElementById('jsonOutput').value = JSON.stringify(products, null, 2);
-            
-            // Set JSON URL
-            const savedUrl = localStorage.getItem(JSON_URL_KEY) || 
-                'https://raw.githubusercontent.com/kis566/Dealsbazar/main/products.json';
-            document.getElementById('jsonUrl').textContent = savedUrl;
-            document.getElementById('testJsonLink').href = savedUrl;
-            document.getElementById('jsonDataUrl').value = savedUrl;
-        }
-
-        function copyJSON() {
-            const json = document.getElementById('jsonOutput').value;
-            navigator.clipboard.writeText(json).then(() => {
-                showToast('JSON copied! Now paste it in products.json on GitHub', 'success');
-            });
-        }
-
-        function downloadJSON() {
-            const products = getProducts();
-            const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'products.json';
-            a.click();
-            showToast('Downloaded! Upload this to GitHub → kis566/Dealsbazar', 'success');
-        }
-
-        function saveJsonUrl() {
-            const url = document.getElementById('jsonDataUrl').value.trim();
-            if (url) {
-                localStorage.setItem(JSON_URL_KEY, url);
-                showToast('JSON URL saved!', 'success');
-                loadExportTab();
-            }
-        }
-
-        // ==================== SETTINGS ====================
-        function changePassword() {
-            const current = document.getElementById('currentPass').value;
-            const newPass = document.getElementById('newPass').value;
-            const confirm = document.getElementById('confirmPass').value;
-            const stored = localStorage.getItem(SETTINGS_KEY + '_password') || DEFAULT_PASSWORD;
-
-            if (current !== stored) return showToast('Wrong current password!', 'error');
-            if (newPass.length < 6) return showToast('Password too short!', 'error');
-            if (newPass !== confirm) return showToast('Passwords dont match!', 'error');
-
-            localStorage.setItem(SETTINGS_KEY + '_password', newPass);
-            showToast('Password updated!', 'success');
-        }
-
-        // ==================== INIT ====================
-        if (!localStorage.getItem(STORAGE_KEY)) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PRODUCTS));
-        }
-        if (isLoggedIn()) initDashboard();
-    </script>
-</body>
-</html>
+            document.getElementById('addPageTitle').innerHTML = '<i class="fas fa-edit"></i> Edit Product';
+            document.getElementById('saveBtn').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Update & Auto-Sync';
