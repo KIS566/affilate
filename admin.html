@@ -19,11 +19,7 @@
             --sidebar-width: 280px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: #f0f2f5;
@@ -136,9 +132,7 @@
             display: none;
         }
 
-        .error-msg.show {
-            display: block;
-        }
+        .error-msg.show { display: block; }
 
         /* ========== ADMIN LAYOUT ========== */
         .admin-layout {
@@ -146,7 +140,6 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
             background: linear-gradient(180deg, #1a1a2e 0%, #0d1117 100%);
@@ -175,18 +168,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .sidebar-logo i {
-            font-size: 1.6rem;
-        }
-
-        .sidebar-subtitle {
-            font-size: 0.7rem;
-            color: #7f8c8d;
-            margin-top: 4px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
         .nav-menu {
@@ -220,11 +201,7 @@
             font-weight: 600;
         }
 
-        .nav-item i {
-            width: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+        .nav-item i { width: 20px; text-align: center; }
 
         .sidebar-footer {
             padding: 16px 20px;
@@ -253,7 +230,6 @@
             border-color: #e74c3c;
         }
 
-        /* Main Content */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -261,7 +237,6 @@
             min-height: 100vh;
         }
 
-        /* Top Bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -275,96 +250,8 @@
             font-size: 1.7rem;
             font-weight: 700;
             color: #1a1a2e;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            padding: 8px 16px;
-            border-radius: 40px;
-            box-shadow: var(--shadow);
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #00bcd4;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        /* Stats Cards */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            border: 1px solid var(--border);
-        }
-
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            background: #e0f7fa;
-            color: #00838f;
-        }
-
-        .stat-icon.orange {
-            background: #fff3e0;
-            color: #ff8f00;
-        }
-
-        .stat-icon.green {
-            background: #e8f5e9;
-            color: #388e3c;
-        }
-
-        .stat-icon.red {
-            background: #fce4ec;
-            color: #c62828;
-        }
-
-        .stat-info h4 {
-            font-size: 0.75rem;
-            color: #7f8c8d;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .stat-info p {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-
-        /* Cards */
         .card {
             background: white;
             border-radius: var(--radius);
@@ -378,32 +265,17 @@
             font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             color: #1a1a2e;
         }
 
-        .card-header i {
-            color: #00bcd4;
-        }
-
-        /* Form Grid */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
 
         .form-group label {
             font-weight: 600;
@@ -423,7 +295,6 @@
             font-family: inherit;
             transition: 0.2s;
             background: #fafbfc;
-            color: #2c3e50;
         }
 
         .form-group input:focus,
@@ -434,17 +305,9 @@
             box-shadow: 0 0 0 4px rgba(0,188,212,0.06);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .required::after { content: " *"; color: #e74c3c; }
 
-        .required::after {
-            content: " *";
-            color: #e74c3c;
-        }
-
-        /* Buttons */
         .btn {
             padding: 10px 20px;
             border-radius: 10px;
@@ -467,74 +330,20 @@
 
         .btn-primary:hover {
             background: linear-gradient(135deg, #0097a7, #006064);
-            box-shadow: 0 6px 18px rgba(0,188,212,0.4);
-            transform: translateY(-1px);
         }
 
-        .btn-warning {
-            background: #ffa726;
-            color: white;
-        }
+        .btn-danger { background: #ef5350; color: white; }
+        .btn-danger:hover { background: #d32f2f; }
+        .btn-success { background: #66bb6a; color: white; }
+        .btn-success:hover { background: #43a047; }
+        .btn-outline { background: white; color: #5f6b7a; border: 2px solid #e0e5ec; }
+        .btn-outline:hover { border-color: #00bcd4; color: #00bcd4; }
 
-        .btn-warning:hover {
-            background: #fb8c00;
-        }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 
-        .btn-danger {
-            background: #ef5350;
-            color: white;
-        }
+        .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
 
-        .btn-danger:hover {
-            background: #d32f2f;
-        }
-
-        .btn-success {
-            background: #66bb6a;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #43a047;
-        }
-
-        .btn-outline {
-            background: white;
-            color: #5f6b7a;
-            border: 2px solid #e0e5ec;
-        }
-
-        .btn-outline:hover {
-            background: #f8fafc;
-            border-color: #00bcd4;
-            color: #00bcd4;
-        }
-
-        .btn-sm {
-            padding: 6px 14px;
-            font-size: 0.78rem;
-            border-radius: 8px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-
-        /* Table */
-        .table-wrapper {
-            overflow-x: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88rem;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
 
         th {
             background: #f8fafc;
@@ -545,18 +354,11 @@
             border-bottom: 2px solid #e0e5ec;
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             white-space: nowrap;
         }
 
-        td {
-            padding: 12px 14px;
-            border-bottom: 1px solid #f1f4f9;
-        }
-
-        tr:hover td {
-            background: #fafdfe;
-        }
+        td { padding: 12px 14px; border-bottom: 1px solid #f1f4f9; }
+        tr:hover td { background: #fafdfe; }
 
         .product-thumb {
             width: 48px;
@@ -564,12 +366,6 @@
             border-radius: 10px;
             object-fit: cover;
             background: #eef2f6;
-            border: 1px solid #e0e5ec;
-        }
-
-        .actions-cell {
-            display: flex;
-            gap: 6px;
         }
 
         .icon-btn {
@@ -580,62 +376,21 @@
             cursor: pointer;
             font-size: 0.85rem;
             transition: 0.2s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
         }
 
-        .icon-btn.edit {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
+        .icon-btn.edit { background: #e3f2fd; color: #1976d2; }
+        .icon-btn.edit:hover { background: #bbdefb; }
+        .icon-btn.delete { background: #ffebee; color: #d32f2f; }
+        .icon-btn.delete:hover { background: #ffcdd2; }
 
-        .icon-btn.edit:hover {
-            background: #bbdefb;
-        }
-
-        .icon-btn.delete {
-            background: #ffebee;
-            color: #d32f2f;
-        }
-
-        .icon-btn.delete:hover {
-            background: #ffcdd2;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #95a5a6;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-        }
-
-        .badge-success {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .badge-info {
-            background: #e0f7fa;
-            color: #00838f;
-        }
-
-        /* Toast */
         .toast-container {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
 
         .toast {
@@ -643,134 +398,52 @@
             border-radius: 12px;
             color: white;
             font-weight: 600;
-            font-size: 0.9rem;
-            animation: slideInRight 0.35s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 400px;
-        }
-
-        .toast-success {
-            background: linear-gradient(135deg, #66bb6a, #43a047);
-        }
-
-        .toast-error {
-            background: linear-gradient(135deg, #ef5350, #d32f2f);
-        }
-
-        .toast-info {
-            background: linear-gradient(135deg, #42a5f5, #1e88e5);
-        }
-
-        @keyframes slideInRight {
-            from {
-                transform: translateX(120%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.2s ease;
-        }
-
-        .modal {
-            background: white;
-            border-radius: 20px;
-            padding: 28px;
-            max-width: 440px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-
-        .modal i {
-            font-size: 3rem;
-            color: #ef5350;
             margin-bottom: 10px;
+            animation: slideIn 0.35s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .modal h3 {
-            margin-bottom: 8px;
+        .toast-success { background: linear-gradient(135deg, #66bb6a, #43a047); }
+        .toast-error { background: linear-gradient(135deg, #ef5350, #d32f2f); }
+        .toast-info { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+
+        @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .github-info {
+            background: #f0f8ff;
+            border: 2px dashed #00bcd4;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            font-size: 0.85rem;
             color: #1a1a2e;
         }
 
-        .modal p {
-            color: #7f8c8d;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+        .github-info code {
+            background: #e0f7fa;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Highlight animation */
-        @keyframes highlightRow {
-            0% { background: #e0f7fa; }
-            100% { background: transparent; }
-        }
-
-        .highlight {
-            animation: highlightRow 1.5s ease;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 0;
-                overflow: hidden;
-                padding: 0;
-            }
-            .sidebar.open {
-                width: var(--sidebar-width);
-                padding: 24px 0;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .mobile-toggle {
-                display: block !important;
-            }
-        }
-
-        .mobile-toggle {
-            display: none;
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 200;
-            background: #1a1a2e;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.2rem;
+        textarea.json-preview {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #e0e5ec;
+            background: #fafbfc;
         }
     </style>
 </head>
 <body>
 
-    <!-- ==================== LOGIN OVERLAY ==================== -->
+    <!-- Login Overlay -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-box">
             <div class="login-icon"><i class="fas fa-shield-alt"></i></div>
@@ -794,20 +467,12 @@
         </div>
     </div>
 
-    <!-- ==================== MOBILE TOGGLE ==================== -->
-    <button class="mobile-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- ==================== ADMIN LAYOUT ==================== -->
+    <!-- Admin Layout -->
     <div class="admin-layout">
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-logo">
-                    <i class="fas fa-bolt"></i> DealsBazar
-                </div>
-                <div class="sidebar-subtitle">Admin Panel v2.0</div>
+                <div class="sidebar-logo"><i class="fas fa-bolt"></i> DealsBazar</div>
+                <div style="font-size:0.7rem;color:#7f8c8d;margin-top:4px;">Admin Panel v3.0</div>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
@@ -820,7 +485,7 @@
                     <i class="fas fa-list-check"></i> Manage Products
                 </li>
                 <li class="nav-item" data-tab="export" onclick="switchTab('export')">
-                    <i class="fas fa-file-export"></i> Export Data
+                    <i class="fas fa-file-export"></i> Export & Deploy
                 </li>
                 <li class="nav-item" data-tab="settings" onclick="switchTab('settings')">
                     <i class="fas fa-cog"></i> Settings
@@ -833,38 +498,33 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <div class="main-content">
-            <!-- Dashboard Tab -->
+            <!-- Dashboard -->
             <div id="tab-dashboard">
                 <div class="top-bar">
                     <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
-                    <div class="user-info">
-                        <div class="user-avatar" id="userAvatar">A</div>
-                        <span id="userDisplay">Admin</span>
-                    </div>
                 </div>
-                <div class="stats-row" id="statsRow"></div>
                 <div class="card">
-                    <div class="card-header"><i class="fas fa-clock"></i> Recently Added Products</div>
+                    <div class="card-header">📊 Quick Stats</div>
+                    <div id="statsRow" style="display:flex;gap:20px;flex-wrap:wrap;"></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">🕐 Recent Products</div>
                     <div class="table-wrapper">
                         <table>
-                            <thead>
-                                <tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Discount</th><th>Date</th></tr>
-                            </thead>
+                            <thead><tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Discount</th></tr></thead>
                             <tbody id="recentTableBody"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Add Product Tab -->
+            <!-- Add Product -->
             <div id="tab-add" style="display:none;">
                 <div class="top-bar">
                     <h1 class="page-title" id="addPageTitle"><i class="fas fa-plus-circle"></i> Add New Product</h1>
                 </div>
                 <div class="card">
-                    <div class="card-header"><i class="fas fa-box"></i> Product Information</div>
                     <form id="productForm" onsubmit="handleSaveProduct(event)">
                         <input type="hidden" id="editId">
                         <div class="form-grid">
@@ -875,30 +535,28 @@
                             <div class="form-group">
                                 <label class="required">Platform</label>
                                 <select id="prodPlatform" required>
-                                    <option value="">Select platform</option>
+                                    <option value="">Select</option>
                                     <option value="Amazon">Amazon</option>
                                     <option value="Flipkart">Flipkart</option>
                                     <option value="Meesho">Meesho</option>
-                                    <option value="Myntra">Myntra</option>
-                                    <option value="Ajio">Ajio</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="required">Selling Price (₹)</label>
-                                <input type="number" id="prodPrice" placeholder="299" min="1" required>
+                                <input type="number" id="prodPrice" placeholder="299" required>
                             </div>
                             <div class="form-group">
                                 <label>Original Price (₹)</label>
-                                <input type="number" id="prodOldPrice" placeholder="499" min="1">
+                                <input type="number" id="prodOldPrice" placeholder="499">
                             </div>
                             <div class="form-group">
                                 <label>Discount</label>
-                                <input type="text" id="prodDiscount" placeholder="50% OFF / 40%">
+                                <input type="text" id="prodDiscount" placeholder="50% OFF">
                             </div>
                             <div class="form-group">
                                 <label>Image URL</label>
-                                <input type="url" id="prodImage" placeholder="https://example.com/image.jpg">
+                                <input type="url" id="prodImage" placeholder="https://...">
                             </div>
                             <div class="form-group full">
                                 <label class="required">Affiliate Link</label>
@@ -906,129 +564,130 @@
                             </div>
                             <div class="form-group full">
                                 <label>Description</label>
-                                <textarea id="prodDescription" placeholder="Short product description (max 150 chars)..." maxlength="150"></textarea>
+                                <textarea id="prodDescription" placeholder="Short description..." maxlength="150"></textarea>
                             </div>
                         </div>
-                        <div class="btn-group" style="margin-top:16px;">
+                        <div class="btn-group">
                             <button type="submit" class="btn btn-primary" id="saveBtn">
                                 <i class="fas fa-save"></i> Save Product
                             </button>
                             <button type="button" class="btn btn-outline" onclick="resetForm()">
                                 <i class="fas fa-undo"></i> Clear Form
                             </button>
-                            <button type="button" class="btn btn-outline" id="cancelEditBtn" style="display:none;" onclick="resetForm()">
-                                <i class="fas fa-times"></i> Cancel Edit
-                            </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Manage Products Tab -->
+            <!-- Manage Products -->
             <div id="tab-manage" style="display:none;">
                 <div class="top-bar">
                     <h1 class="page-title"><i class="fas fa-list-check"></i> Manage Products</h1>
-                    <span style="color:#7f8c8d;font-weight:600;" id="manageCount"></span>
+                    <span id="manageCount" style="color:#7f8c8d;font-weight:600;"></span>
                 </div>
                 <div class="card">
-                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-                        <div class="card-header" style="margin-bottom:0;"><i class="fas fa-database"></i> All Products</div>
-                        <input type="text" id="manageSearch" placeholder="🔍 Search in table..." 
-                               style="padding:8px 14px;border:2px solid #e0e5ec;border-radius:8px;font-size:0.85rem;width:220px;"
-                               oninput="filterManageTable()">
-                    </div>
                     <div class="table-wrapper">
                         <table>
-                            <thead>
-                                <tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Discount</th><th>Actions</th></tr>
-                            </thead>
+                            <thead><tr><th>Image</th><th>Title</th><th>Platform</th><th>Price</th><th>Actions</th></tr></thead>
                             <tbody id="manageTableBody"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Export Tab -->
+            <!-- Export & Deploy -->
             <div id="tab-export" style="display:none;">
                 <div class="top-bar">
-                    <h1 class="page-title"><i class="fas fa-file-export"></i> Export Data</h1>
+                    <h1 class="page-title"><i class="fas fa-rocket"></i> Export & Deploy</h1>
                 </div>
+                
+                <!-- STEP 1: Generate JSON -->
                 <div class="card">
-                    <div class="card-header"><i class="fas fa-code"></i> JSON Export</div>
-                    <p style="color:#7f8c8d;margin-bottom:12px;">Copy or download all products as JSON file.</p>
-                    <textarea id="jsonOutput" readonly 
-                              style="width:100%;height:350px;font-family:'Courier New',monospace;font-size:0.82rem;padding:14px;border-radius:10px;border:2px solid #e0e5ec;background:#fafbfc;resize:vertical;"></textarea>
-                    <div class="btn-group" style="margin-top:14px;">
+                    <div class="card-header">📝 Step 1: Generate JSON</div>
+                    <p style="color:#7f8c8d;margin-bottom:12px;">Copy this JSON and save as <code>products.json</code> in your GitHub repository.</p>
+                    <textarea id="jsonOutput" readonly class="json-preview"></textarea>
+                    <div class="btn-group">
                         <button class="btn btn-primary" onclick="copyJSON()">
-                            <i class="fas fa-copy"></i> Copy to Clipboard
+                            <i class="fas fa-copy"></i> Copy JSON
                         </button>
                         <button class="btn btn-success" onclick="downloadJSON()">
-                            <i class="fas fa-download"></i> Download JSON
+                            <i class="fas fa-download"></i> Download JSON File
                         </button>
                     </div>
                 </div>
+
+                <!-- STEP 2: GitHub Instructions -->
+                <div class="card">
+                    <div class="card-header">🚀 Step 2: Upload to GitHub</div>
+                    <div class="github-info">
+                        <p><strong>1.</strong> Download the JSON file above</p>
+                        <p><strong>2.</strong> Go to your GitHub repository: <code>kis566/Dealsbazar</code></p>
+                        <p><strong>3.</strong> Upload/Replace <code>products.json</code> file</p>
+                        <p><strong>4.</strong> Commit changes</p>
+                        <p><strong>5.</strong> Wait 1-2 minutes for GitHub Pages to update</p>
+                        <p style="margin-top:8px;color:#00838f;">✅ Your website will automatically show new products!</p>
+                    </div>
+                    <div class="btn-group" style="margin-top:12px;">
+                        <a href="https://github.com/kis566/Dealsbazar" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-github"></i> Open GitHub Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Test -->
+                <div class="card">
+                    <div class="card-header">🔗 Step 3: Verify</div>
+                    <p style="color:#7f8c8d;margin-bottom:8px;">Check if your JSON is accessible:</p>
+                    <code id="jsonUrl" style="background:#f0f8ff;padding:8px;border-radius:6px;display:block;word-break:break-all;"></code>
+                    <a id="testJsonLink" href="#" target="_blank" class="btn btn-outline" style="margin-top:8px;">
+                        <i class="fas fa-external-link-alt"></i> Test JSON URL
+                    </a>
+                </div>
             </div>
 
-            <!-- Settings Tab -->
+            <!-- Settings -->
             <div id="tab-settings" style="display:none;">
                 <div class="top-bar">
                     <h1 class="page-title"><i class="fas fa-cog"></i> Settings</h1>
                 </div>
                 <div class="card">
-                    <div class="card-header"><i class="fas fa-user-lock"></i> Change Password</div>
+                    <div class="card-header">🔧 JSON Data URL Configuration</div>
+                    <p style="color:#7f8c8d;margin-bottom:12px;">Configure the URL where your <code>products.json</code> is hosted.</p>
+                    <div class="form-group" style="margin-bottom:12px;">
+                        <label>JSON Data URL (GitHub Raw)</label>
+                        <input type="url" id="jsonDataUrl" placeholder="https://raw.githubusercontent.com/..." style="width:100%;">
+                    </div>
+                    <small style="color:#7f8c8d;">Example: <code>https://raw.githubusercontent.com/kis566/Dealsbazar/main/products.json</code></small>
+                    <div class="btn-group" style="margin-top:12px;">
+                        <button class="btn btn-primary" onclick="saveJsonUrl()">
+                            <i class="fas fa-save"></i> Save URL
+                        </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">🔒 Change Password</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Current Password</label>
-                            <input type="password" id="currentPass" placeholder="Enter current password">
+                            <input type="password" id="currentPass" placeholder="Current password">
                         </div>
                         <div class="form-group">
                             <label>New Password</label>
-                            <input type="password" id="newPass" placeholder="Enter new password">
+                            <input type="password" id="newPass" placeholder="New password">
                         </div>
                         <div class="form-group">
-                            <label>Confirm New Password</label>
-                            <input type="password" id="confirmPass" placeholder="Confirm new password">
+                            <label>Confirm Password</label>
+                            <input type="password" id="confirmPass" placeholder="Confirm password">
                         </div>
                     </div>
                     <button class="btn btn-primary" style="margin-top:12px;" onclick="changePassword()">
                         <i class="fas fa-key"></i> Update Password
                     </button>
                 </div>
-                <div class="card">
-                    <div class="card-header"><i class="fas fa-database"></i> Data Management</div>
-                    <p style="color:#7f8c8d;margin-bottom:12px;">Import products from JSON or reset all data.</p>
-                    <div class="btn-group">
-                        <button class="btn btn-outline" onclick="document.getElementById('importFile').click()">
-                            <i class="fas fa-upload"></i> Import JSON
-                        </button>
-                        <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importJSON(event)">
-                        <button class="btn btn-danger" onclick="confirmResetAll()">
-                            <i class="fas fa-trash"></i> Reset All Products
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div class="modal-overlay" id="deleteModal" style="display:none;">
-        <div class="modal">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h3>Delete Product?</h3>
-            <p>This action cannot be undone. Are you sure you want to delete this product?</p>
-            <div class="btn-group" style="justify-content:center;">
-                <button class="btn btn-danger" id="confirmDeleteBtn">
-                    <i class="fas fa-trash"></i> Delete
-                </button>
-                <button class="btn btn-outline" onclick="closeDeleteModal()">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
     <script>
@@ -1036,90 +695,60 @@
         const STORAGE_KEY = 'dealsbazar_products';
         const AUTH_KEY = 'dealsbazar_auth';
         const SETTINGS_KEY = 'dealsbazar_settings';
+        const JSON_URL_KEY = 'dealsbazar_json_url';
 
-        // Default credentials (change in production)
         const DEFAULT_USERNAME = 'admin';
         const DEFAULT_PASSWORD = 'admin123';
 
-        let pendingDeleteId = null;
-
-        // ==================== DEFAULT PRODUCTS ====================
         const DEFAULT_PRODUCTS = [
             {
                 id: 'a1b2c3d4e5',
-                title: 'Wireless Bluetooth Earbuds',
+                title: 'Wireless Bluetooth Earbuds with ANC',
                 platform: 'Amazon',
                 price: '599',
                 oldPrice: '1499',
                 discount: '60% OFF',
                 image: 'https://images.unsplash.com/photo-1590658268037-6bf12f1441f4?w=400',
-                link: 'https://amzn.to/example1',
-                description: 'Premium sound quality with noise cancellation, 24hr battery life.',
-                createdAt: new Date().toISOString()
+                link: '#',
+                description: 'Active noise cancellation, 30hr battery, IPX5 waterproof.',
+                rating: '4.5',
+                reviews: '2.3k',
+                category: 'Electronics',
+                trending: true
             },
             {
                 id: 'f6g7h8i9j0',
-                title: 'Smart Watch Fitness Band',
+                title: 'Smart Watch Ultra Series',
                 platform: 'Flipkart',
                 price: '999',
                 oldPrice: '2999',
                 discount: '67% OFF',
                 image: 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400',
-                link: 'https://fkrt.co/example2',
-                description: 'Heart rate monitor, SpO2, sleep tracking, 7-day battery.',
-                createdAt: new Date().toISOString()
+                link: '#',
+                description: 'AMOLED display, heart rate, SpO2, GPS, 14-day battery.',
+                rating: '4.3',
+                reviews: '1.8k',
+                category: 'Wearables',
+                trending: true
             },
             {
                 id: 'k1l2m3n4o5',
-                title: 'Premium Leather Wallet',
+                title: 'Premium Genuine Leather Wallet',
                 platform: 'Meesho',
                 price: '249',
                 oldPrice: '699',
                 discount: '64% OFF',
                 image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400',
-                link: 'https://meesho.com/example3',
-                description: 'Genuine leather, RFID blocking, slim design.',
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'p6q7r8s9t0',
-                title: 'Stainless Steel Water Bottle',
-                platform: 'Amazon',
-                price: '349',
-                oldPrice: '899',
-                discount: '61% OFF',
-                image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400',
-                link: 'https://amzn.to/example4',
-                description: '750ml, vacuum insulated, keeps water cold 24hrs.',
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'u1v2w3x4y5',
-                title: 'LED Desk Lamp with USB',
-                platform: 'Flipkart',
-                price: '449',
-                oldPrice: '1299',
-                discount: '65% OFF',
-                image: 'https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400',
-                link: 'https://fkrt.co/example5',
-                description: 'Touch control, 3 brightness levels, flexible neck.',
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: 'z6a7b8c9d0',
-                title: 'Cotton T-Shirt Pack of 3',
-                platform: 'Meesho',
-                price: '399',
-                oldPrice: '999',
-                discount: '60% OFF',
-                image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',
-                link: 'https://meesho.com/example6',
-                description: '100% cotton, comfortable fit, assorted colors.',
-                createdAt: new Date().toISOString()
+                link: '#',
+                description: 'RFID blocking, 8 card slots, slim design.',
+                rating: '4.6',
+                reviews: '5.1k',
+                category: 'Fashion',
+                trending: false
             }
         ];
 
-        // ==================== AUTHENTICATION ====================
+        // ==================== AUTH ====================
         function isLoggedIn() {
             return sessionStorage.getItem(AUTH_KEY) === 'true';
         }
@@ -1133,43 +762,25 @@
             if (username === storedUsername && password === storedPassword) {
                 sessionStorage.setItem(AUTH_KEY, 'true');
                 document.getElementById('loginOverlay').classList.add('hidden');
-                document.getElementById('userDisplay').textContent = username;
-                document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
                 document.getElementById('loginError').classList.remove('show');
-                showToast('Welcome back, ' + username + '!', 'success');
+                showToast('Welcome, ' + username + '!', 'success');
                 initDashboard();
             } else {
                 document.getElementById('loginError').classList.add('show');
-                document.getElementById('passwordInput').value = '';
             }
         }
 
         function handleLogout() {
             sessionStorage.removeItem(AUTH_KEY);
             document.getElementById('loginOverlay').classList.remove('hidden');
-            document.getElementById('usernameInput').value = '';
-            document.getElementById('passwordInput').value = '';
-            switchTab('dashboard');
-            showToast('Logged out successfully', 'info');
+            showToast('Logged out', 'info');
         }
 
-        // Check auth on load
         if (isLoggedIn()) {
             document.getElementById('loginOverlay').classList.add('hidden');
-            const username = localStorage.getItem(SETTINGS_KEY + '_username') || DEFAULT_USERNAME;
-            document.getElementById('userDisplay').textContent = username;
-            document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
         }
 
-        // Enter key to login
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') handleLogin();
-        });
-        document.getElementById('usernameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('passwordInput').focus();
-        });
-
-        // ==================== DATA MANAGEMENT ====================
+        // ==================== DATA ====================
         function getProducts() {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
@@ -1195,12 +806,10 @@
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast toast-${type}`;
-            const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle' };
-            toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i> ${message}`;
+            toast.textContent = message;
             container.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
-                toast.style.transform = 'translateX(120%)';
                 toast.style.transition = '0.3s';
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
@@ -1209,7 +818,6 @@
         // ==================== TAB SWITCHING ====================
         function switchTab(tabName) {
             if (!isLoggedIn()) return;
-            
             document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
@@ -1221,40 +829,22 @@
 
             if (tabName === 'dashboard') initDashboard();
             if (tabName === 'manage') loadManageTable();
-            if (tabName === 'export') loadExportJSON();
+            if (tabName === 'export') loadExportTab();
         }
 
         // ==================== DASHBOARD ====================
         function initDashboard() {
             if (!isLoggedIn()) return;
-            
             const products = getProducts();
-            const totalProducts = products.length;
-            const amazonCount = products.filter(p => p.platform?.toLowerCase().includes('amazon')).length;
-            const flipkartCount = products.filter(p => p.platform?.toLowerCase().includes('flipkart')).length;
-            const avgDiscount = products.length > 0
-                ? Math.round(products.reduce((sum, p) => {
-                    const d = parseInt((p.discount || '0').replace(/[^\d]/g, '')) || 0;
-                    return sum + d;
-                }, 0) / products.length)
-                : 0;
-
             document.getElementById('statsRow').innerHTML = `
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-box"></i></div>
-                    <div class="stat-info"><h4>Total Products</h4><p>${totalProducts}</p></div>
+                <div style="background:#e0f7fa;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
+                    <h2 style="color:#00838f;">${products.length}</h2><small>Total Products</small>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon orange"><i class="fab fa-amazon"></i></div>
-                    <div class="stat-info"><h4>Amazon</h4><p>${amazonCount}</p></div>
+                <div style="background:#fff3e0;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
+                    <h2 style="color:#ff8f00;">${products.filter(p => p.platform?.toLowerCase().includes('amazon')).length}</h2><small>Amazon</small>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon green"><i class="fas fa-shopping-bag"></i></div>
-                    <div class="stat-info"><h4>Flipkart</h4><p>${flipkartCount}</p></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon red"><i class="fas fa-tag"></i></div>
-                    <div class="stat-info"><h4>Avg Discount</h4><p>${avgDiscount}%</p></div>
+                <div style="background:#e8f5e9;padding:20px;border-radius:12px;text-align:center;min-width:120px;">
+                    <h2 style="color:#388e3c;">${products.filter(p => p.platform?.toLowerCase().includes('flipkart')).length}</h2><small>Flipkart</small>
                 </div>
             `;
 
@@ -1262,20 +852,17 @@
             document.getElementById('recentTableBody').innerHTML = recent.map(p => `
                 <tr>
                     <td>${p.image ? `<img src="${p.image}" class="product-thumb" onerror="this.style.display='none'">` : '📦'}</td>
-                    <td><strong>${escapeHTML(p.title)}</strong></td>
-                    <td><span class="badge badge-info">${escapeHTML(p.platform)}</span></td>
+                    <td><strong>${p.title}</strong></td>
+                    <td>${p.platform}</td>
                     <td>₹${p.price}</td>
-                    <td><span class="badge badge-success">${p.discount || '-'}</span></td>
-                    <td style="font-size:0.75rem;color:#95a5a6;">${p.createdAt ? new Date(p.createdAt).toLocaleDateString() : '-'}</td>
+                    <td>${p.discount || '-'}</td>
                 </tr>
-            `).join('') || '<tr><td colspan="6" class="empty-state">No products yet</td></tr>';
+            `).join('') || '<tr><td colspan="5">No products</td></tr>';
         }
 
-        // ==================== ADD / EDIT PRODUCT ====================
+        // ==================== ADD / EDIT ====================
         function handleSaveProduct(event) {
             event.preventDefault();
-            if (!isLoggedIn()) return;
-
             const products = getProducts();
             const editId = document.getElementById('editId').value;
 
@@ -1289,26 +876,24 @@
                 image: document.getElementById('prodImage').value,
                 link: document.getElementById('prodLink').value,
                 description: document.getElementById('prodDescription').value,
-                createdAt: editId 
-                    ? (products.find(p => p.id === editId)?.createdAt || new Date().toISOString())
-                    : new Date().toISOString(),
-                updatedAt: new Date().toISOString()
+                rating: (Math.random() * 1 + 4).toFixed(1),
+                reviews: Math.floor(Math.random() * 5000) + ' reviews',
+                category: 'General',
+                trending: false
             };
 
             if (!product.title || !product.price || !product.link || !product.platform) {
-                showToast('Please fill all required fields!', 'error');
+                showToast('Fill all required fields!', 'error');
                 return;
             }
 
             if (editId) {
                 const index = products.findIndex(p => p.id === editId);
-                if (index !== -1) {
-                    products[index] = product;
-                    showToast('Product updated successfully!', 'success');
-                }
+                if (index !== -1) products[index] = product;
+                showToast('Updated!', 'success');
             } else {
                 products.push(product);
-                showToast('Product added successfully!', 'success');
+                showToast('Added!', 'success');
             }
 
             saveProducts(products);
@@ -1318,12 +903,8 @@
         }
 
         function editProduct(id) {
-            if (!isLoggedIn()) return;
-            
-            const products = getProducts();
-            const product = products.find(p => p.id === id);
+            const product = getProducts().find(p => p.id === id);
             if (!product) return;
-
             document.getElementById('editId').value = product.id;
             document.getElementById('prodTitle').value = product.title;
             document.getElementById('prodPlatform').value = product.platform;
@@ -1333,207 +914,101 @@
             document.getElementById('prodImage').value = product.image || '';
             document.getElementById('prodLink').value = product.link;
             document.getElementById('prodDescription').value = product.description || '';
-
-            document.getElementById('addPageTitle').innerHTML = '<i class="fas fa-edit"></i> Edit Product';
-            document.getElementById('saveBtn').innerHTML = '<i class="fas fa-save"></i> Update Product';
-            document.getElementById('cancelEditBtn').style.display = 'inline-flex';
-            
             switchTab('add');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteProduct(id) {
+            if (!confirm('Delete this product?')) return;
+            let products = getProducts();
+            products = products.filter(p => p.id !== id);
+            saveProducts(products);
+            showToast('Deleted!', 'error');
+            initDashboard();
+            loadManageTable();
         }
 
         function resetForm() {
             document.getElementById('productForm').reset();
             document.getElementById('editId').value = '';
-            document.getElementById('addPageTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Add New Product';
-            document.getElementById('saveBtn').innerHTML = '<i class="fas fa-save"></i> Save Product';
-            document.getElementById('cancelEditBtn').style.display = 'none';
         }
 
-        function confirmDelete(id) {
-            pendingDeleteId = id;
-            document.getElementById('deleteModal').style.display = 'flex';
-        }
-
-        function closeDeleteModal() {
-            pendingDeleteId = null;
-            document.getElementById('deleteModal').style.display = 'none';
-        }
-
-        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
-            if (pendingDeleteId) {
-                deleteProduct(pendingDeleteId);
-                closeDeleteModal();
-            }
-        });
-
-        function deleteProduct(id) {
-            if (!isLoggedIn()) return;
-            
-            let products = getProducts();
-            products = products.filter(p => p.id !== id);
-            saveProducts(products);
-            showToast('Product deleted successfully!', 'error');
-            initDashboard();
-            loadManageTable();
-        }
-
-        // ==================== MANAGE TABLE ====================
+        // ==================== MANAGE ====================
         function loadManageTable() {
-            if (!isLoggedIn()) return;
-            
             const products = getProducts();
-            document.getElementById('manageCount').textContent = `Total: ${products.length} products`;
-            
-            window._manageProducts = products;
-            renderManageTable(products);
-        }
-
-        function renderManageTable(products) {
+            document.getElementById('manageCount').textContent = `Total: ${products.length}`;
             document.getElementById('manageTableBody').innerHTML = products.map(p => `
                 <tr>
                     <td>${p.image ? `<img src="${p.image}" class="product-thumb" onerror="this.style.display='none'">` : '📦'}</td>
-                    <td><strong>${escapeHTML(p.title)}</strong></td>
-                    <td><span class="badge badge-info">${escapeHTML(p.platform)}</span></td>
-                    <td>₹${p.price} ${p.oldPrice ? `<span style="text-decoration:line-through;color:#a0aec0;font-size:0.8rem;">₹${p.oldPrice}</span>` : ''}</td>
-                    <td><span class="badge badge-success">${p.discount || '-'}</span></td>
-                    <td class="actions-cell">
-                        <button class="icon-btn edit" onclick="editProduct('${p.id}')" title="Edit"><i class="fas fa-edit"></i></button>
-                        <button class="icon-btn delete" onclick="confirmDelete('${p.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                    <td><strong>${p.title}</strong></td>
+                    <td>${p.platform}</td>
+                    <td>₹${p.price}</td>
+                    <td>
+                        <button class="icon-btn edit" onclick="editProduct('${p.id}')"><i class="fas fa-edit"></i></button>
+                        <button class="icon-btn delete" onclick="deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
-            `).join('') || '<tr><td colspan="6" class="empty-state">No products found. Add some!</td></tr>';
-        }
-
-        function filterManageTable() {
-            const searchTerm = document.getElementById('manageSearch').value.toLowerCase();
-            const products = window._manageProducts || getProducts();
-            const filtered = products.filter(p =>
-                p.title?.toLowerCase().includes(searchTerm) ||
-                p.platform?.toLowerCase().includes(searchTerm) ||
-                p.price?.includes(searchTerm)
-            );
-            renderManageTable(filtered);
+            `).join('') || '<tr><td colspan="5">No products</td></tr>';
         }
 
         // ==================== EXPORT ====================
-        function loadExportJSON() {
-            if (!isLoggedIn()) return;
+        function loadExportTab() {
             const products = getProducts();
             document.getElementById('jsonOutput').value = JSON.stringify(products, null, 2);
+            
+            // Set JSON URL
+            const savedUrl = localStorage.getItem(JSON_URL_KEY) || 
+                'https://raw.githubusercontent.com/kis566/Dealsbazar/main/products.json';
+            document.getElementById('jsonUrl').textContent = savedUrl;
+            document.getElementById('testJsonLink').href = savedUrl;
+            document.getElementById('jsonDataUrl').value = savedUrl;
         }
 
         function copyJSON() {
             const json = document.getElementById('jsonOutput').value;
             navigator.clipboard.writeText(json).then(() => {
-                showToast('JSON copied to clipboard!', 'success');
-            }).catch(() => {
-                document.getElementById('jsonOutput').select();
-                document.execCommand('copy');
-                showToast('JSON copied!', 'success');
+                showToast('JSON copied! Now paste it in products.json on GitHub', 'success');
             });
         }
 
         function downloadJSON() {
             const products = getProducts();
             const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `products_backup_${new Date().toISOString().split('T')[0]}.json`;
+            a.href = URL.createObjectURL(blob);
+            a.download = 'products.json';
             a.click();
-            URL.revokeObjectURL(url);
-            showToast('JSON file downloaded!', 'success');
+            showToast('Downloaded! Upload this to GitHub → kis566/Dealsbazar', 'success');
         }
 
-        function importJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if (Array.isArray(data) && data.length > 0) {
-                        if (confirm(`Import ${data.length} products? This will replace ALL existing products.`)) {
-                            saveProducts(data);
-                            showToast(`${data.length} products imported!`, 'success');
-                            initDashboard();
-                            loadManageTable();
-                        }
-                    } else {
-                        showToast('Invalid JSON format!', 'error');
-                    }
-                } catch (err) {
-                    showToast('Error parsing JSON file!', 'error');
-                }
-            };
-            reader.readAsText(file);
-            event.target.value = '';
-        }
-
-        function confirmResetAll() {
-            if (confirm('Are you sure you want to delete ALL products? This cannot be undone!')) {
-                if (confirm('FINAL WARNING: All products will be permanently deleted. Continue?')) {
-                    saveProducts([]);
-                    showToast('All products deleted!', 'error');
-                    initDashboard();
-                    loadManageTable();
-                }
+        function saveJsonUrl() {
+            const url = document.getElementById('jsonDataUrl').value.trim();
+            if (url) {
+                localStorage.setItem(JSON_URL_KEY, url);
+                showToast('JSON URL saved!', 'success');
+                loadExportTab();
             }
         }
 
         // ==================== SETTINGS ====================
         function changePassword() {
-            if (!isLoggedIn()) return;
-            
-            const currentPass = document.getElementById('currentPass').value;
+            const current = document.getElementById('currentPass').value;
             const newPass = document.getElementById('newPass').value;
-            const confirmPass = document.getElementById('confirmPass').value;
-            const storedPassword = localStorage.getItem(SETTINGS_KEY + '_password') || DEFAULT_PASSWORD;
+            const confirm = document.getElementById('confirmPass').value;
+            const stored = localStorage.getItem(SETTINGS_KEY + '_password') || DEFAULT_PASSWORD;
 
-            if (currentPass !== storedPassword) {
-                showToast('Current password is incorrect!', 'error');
-                return;
-            }
-            if (newPass.length < 6) {
-                showToast('New password must be at least 6 characters!', 'error');
-                return;
-            }
-            if (newPass !== confirmPass) {
-                showToast('Passwords do not match!', 'error');
-                return;
-            }
+            if (current !== stored) return showToast('Wrong current password!', 'error');
+            if (newPass.length < 6) return showToast('Password too short!', 'error');
+            if (newPass !== confirm) return showToast('Passwords dont match!', 'error');
 
             localStorage.setItem(SETTINGS_KEY + '_password', newPass);
-            document.getElementById('currentPass').value = '';
-            document.getElementById('newPass').value = '';
-            document.getElementById('confirmPass').value = '';
-            showToast('Password updated successfully!', 'success');
-        }
-
-        // ==================== UTILS ====================
-        function escapeHTML(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
+            showToast('Password updated!', 'success');
         }
 
         // ==================== INIT ====================
-        function init() {
-            if (!localStorage.getItem(STORAGE_KEY)) {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PRODUCTS));
-            }
-            if (isLoggedIn()) {
-                initDashboard();
-            }
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PRODUCTS));
         }
-
-        init();
+        if (isLoggedIn()) initDashboard();
     </script>
 </body>
 </html>
